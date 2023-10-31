@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  write your text Here : <input type="text" id="khu" >
+      <br>
+      <br>
+<button onclick="addtolist()">Add</button>
+
+<ul id="todolist">
+    
+</ul>
+
+</body>
+
+<script>
+
+   todolist=[]
+
+   function showlist()
+   {
+ output=" "
+ for(let i=0;i<todolist.length;i++)
+ {
+    output =output + `<li>
+       <span onclick="taskdone(this)"> ${todolist[i]} </span>
+         <button onclick= "removelist('${todolist[i]}')" > X </button></li>`
+ } 
+    document.getElementById("todolist").innerHTML=output
+   }
+   showlist();
+
+
+
+
+
+
+   var khu=document.getElementById("khu")
+   khu.addEventListener("keydown" ,function(press)
+   {
+     if(press.code=="Enter"){
+        addtolist()
+     }
+   });
+
+    function addtolist()
+    {
+      khu=document.getElementById("khu").value
+      todolist.push(khu)
+      showlist()
+
+      document.getElementById("khu").value=" "
+    }
+
+    function removelist(khu)
+    {
+        const index =todolist.indexOf(khu);
+        if(index > -1)
+        {
+            todolist.splice(index,1);
+        }
+        showlist();
+    }
+
+  //  removelist(`iut`)
+
+  function taskdone(ele)
+  {
+    temp=ele.innerHTML
+
+    ele.innerHTML=temp.strike()
+  }
+
+    
+    </script>
+
+
+
+</html>
+
